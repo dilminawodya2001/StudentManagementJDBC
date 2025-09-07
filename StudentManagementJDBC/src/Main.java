@@ -21,13 +21,17 @@ public class Main {
                 case 1:
                     System.out.print("Enter name: ");
                     String name = sc.nextLine();
+                    System.out.print("Enter email: ");
+                    String email = sc.nextLine();
                     System.out.print("Enter age: ");
                     int age = sc.nextInt();
                     sc.nextLine();
-                    System.out.print("Enter grade: ");
-                    String grade = sc.nextLine();
+                    System.out.print("Enter course: ");
+                    String course = sc.nextLine();
+                    System.out.print("Enter department: ");
+                    String dept = sc.nextLine();
 
-                    Student newStudent = new Student(name, age, grade);
+                    Student newStudent = new Student(name, email, age, course, dept);
                     dao.addStudent(newStudent);
                     break;
 
@@ -43,18 +47,48 @@ public class Main {
                     System.out.print("Enter ID of student to update: ");
                     int updateId = sc.nextInt();
                     sc.nextLine();
-                    System.out.print("Enter new name: ");
-                    String newName = sc.nextLine();
-                    System.out.print("Enter new age: ");
-                    int newAge = sc.nextInt();
-                    sc.nextLine();
-                    System.out.print("Enter new grade: ");
-                    String newGrade = sc.nextLine();
 
-                    Student updateStudent = new Student(newName, newAge, newGrade);
-                    updateStudent.setId(updateId);
-                    dao.updateStudent(updateStudent);
+                    System.out.println("\nWhich field do you want to update?");
+                    System.out.println("1. Name");
+                    System.out.println("2. Email");
+                    System.out.println("3. Age");
+                    System.out.println("4. Course");
+                    System.out.println("5. Department");
+                    System.out.print("Enter choice: ");
+                    int updateChoice = sc.nextInt();
+                    sc.nextLine();
+
+                    switch (updateChoice) {
+                        case 1:
+                            System.out.print("Enter new name: ");
+                            String newName = sc.nextLine();
+                            dao.updateStudentField(updateId, "name", newName);
+                            break;
+                        case 2:
+                            System.out.print("Enter new email: ");
+                            String newEmail = sc.nextLine();
+                            dao.updateStudentField(updateId, "email", newEmail);
+                            break;
+                        case 3:
+                            System.out.print("Enter new age: ");
+                            int newAge = sc.nextInt();
+                            dao.updateStudentField(updateId, "age", newAge);
+                            break;
+                        case 4:
+                            System.out.print("Enter new course: ");
+                            String newCourse = sc.nextLine();
+                            dao.updateStudentField(updateId, "course", newCourse);
+                            break;
+                        case 5:
+                            System.out.print("Enter new department: ");
+                            String newDept = sc.nextLine();
+                            dao.updateStudentField(updateId, "department", newDept);
+                            break;
+                        default:
+                            System.out.println("Invalid choice!");
+                    }
                     break;
+
 
                 case 4:
                     System.out.print("Enter ID of student to delete: ");
